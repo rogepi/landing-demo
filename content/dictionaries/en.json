@@ -1,0 +1,33 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "Nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "question": "Q&A",
+    "about": "About"
+  },
+  "Q&A": [
+    [
+      "What is this App for?",
+      "This App is a xxxx application designed for xxxxx."
+    ],
+    [
+      "What features does this App have?",
+      "This App includes xxxxx features, such as xxxxx, xxxxx, xxxxx, etc. You can find more detailed information on our website."
+    ],
+    [
+      "My App is not working properly, what should I do?",
+      "Please make sure that your device and operating system version are up to date, and try restarting the App. If the problem still persists, try uninstalling and reinstalling the App. If the problem still exists, please contact our customer service staff for help."
+    ],
+    [
+      "How do I contact customer service staff?",
+      "You can find the contact information of our customer service staff on our website, such as phone, email, or online chat. Our customer service staff will reply to you as soon as possible and solve your problems."
+    ]
+  ],
+  "Blog":{
+    "title": "Latest Updates",
+    "back": "Back"
+  }
+}

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.inner-width {
+  @apply mx-auto w-full  overflow-hidden px-5 md:max-w-3xl md:overflow-visible lg:max-w-4xl xl:max-w-6xl;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.hero-text {
+  @apply text-center text-4xl font-bold text-white;
+}
+
+.hero-btn {
+  @apply mt-10 box-border flex items-center justify-center gap-2 rounded-xl border-2 border-black
+           bg-black px-7 py-[15px] text-lg font-bold text-white transition-all duration-300 ease-in-out hover:scale-105
+           hover:border-blue-600 hover:bg-white hover:text-blue-600 hover:shadow-xl hover:shadow-blue-600/50
+            dark:border-white dark:bg-white dark:text-black dark:hover:border-blue-600 dark:hover:bg-black dark:hover:text-blue-600;
+}
