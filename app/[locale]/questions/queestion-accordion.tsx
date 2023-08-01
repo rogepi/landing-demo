@@ -2,14 +2,14 @@
 
 import { Accordion, AccordionItem } from '@nextui-org/react'
 
-type QuestionAccordionsProps = {
+type QuestionAccordionProps = {
   questions: string[][]
   className?: string
 }
-export function QuestionAccordions({
+export function QuestionAccordion({
   questions,
   className,
-}: QuestionAccordionsProps) {
+}: QuestionAccordionProps) {
   return (
     <Accordion className={className}>
       {questions.map((item, index) => (
