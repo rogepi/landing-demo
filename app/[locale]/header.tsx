@@ -1,13 +1,22 @@
 'use client'
 
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import {
+  cn,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from '@nextui-org/react'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next-intl/link'
+import Link from 'next/link'
 import * as React from 'react'
 
 import { ThemeToggle } from '@/components/widgets/theme-toggle'
-import { MAIN_NAV_ITEMS } from '@/constants/nav'
-import { cn } from '@/lib/utils'
+import { NAV_ITEMS } from '@/constants/nav'
 
 import Download from '../../public/download.svg'
 import Logo from '../../public/loora-logo.svg'
@@ -21,6 +30,8 @@ export function Header({
   labels: LabelsType
   className?: string
 }) {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
   const { scrollY } = useScroll()
   const [isTop, setIsTop] = React.useState(true)
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -31,53 +42,52 @@ export function Header({
     }
   })
   return (
-    <header
-      className={cn(
-        'sticky left-0 top-0 z-50 w-full bg-white/80 backdrop-blur-sm transition-all dark:bg-black dark:bg-opacity-80 dark:backdrop-blur-sm'
-      )}
+    <Navbar
+      className={className}
+      maxWidth="2xl"
+      onMenuOpenChange={setIsMenuOpen}
     >
-      <motion.div
-        layout
-        className={cn(
-          'flex w-full items-center justify-between ',
-          isTop ? 'p-[22px] md:p-[30px]' : 'p-[15px] md:p-[20px]',
-          className
-        )}
+      {/* left */}
+      <NavbarContent className={cn('transition-all', isTop ? '' : 'scale-95 ')}>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+          <Link href="/">
+            <Image
+              src={Logo}
+              alt="logo"
+              className="h-10 w-20 md:w-24 lg:w-28 xl:w-32"
+              width={130}
+              height={45}
+            />
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+
+      {/* center */}
+      <NavbarContent
+        className="hidden font-semibold sm:flex sm:gap-12 sm:text-xl"
+        justify="center"
       >
-        <Link
-          href="/"
-          className={cn('transition-all', isTop ? '' : 'scale-75 ')}
-        >
-          <Image
-            src={Logo}
-            alt="logo"
-            className="h-10 w-20 md:w-24 lg:w-28 xl:w-32"
-            width={130}
-            height={45}
-          />
-        </Link>
-        <div
-          className={cn(
-            'flex-center ',
-            isTop ? 'gap-4 text-xl md:gap-8' : 'text-md gap-3 md:gap-5'
-          )}
-        >
-          <nav className="hidden md:inline-block">
-            <ul className="flex items-center gap-10 font-bold">
-              {MAIN_NAV_ITEMS.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <Link href={item.url}>{labels[item.key]}</Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-          <ThemeToggle className={isTop ? '' : 'ml-3 scale-75'} />
-          <Link
-            href="#"
-            className={cn('transition-all', isTop ? '' : 'scale-75 ')}
-          >
+        {NAV_ITEMS.filter((item) => item.key !== 'home').map((item, index) => (
+          <NavbarItem className=" hover:opacity-70" key={index}>
+            <Link href={item.url}>{labels[item.key]}</Link>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+
+      {/* right */}
+      <NavbarContent
+        className={cn('transition-all', isTop ? '' : 'scale-95 ')}
+        justify="end"
+      >
+        <NavbarItem className="flex items-center">
+          <ThemeToggle />
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="#">
             <Image
               src={Download}
               className="h-10 w-20 md:w-24 lg:w-28 xl:w-32"
@@ -86,8 +96,22 @@ export function Header({
               height={45}
             />
           </Link>
-        </div>
-      </motion.div>
-    </header>
+        </NavbarItem>
+      </NavbarContent>
+
+      {/* mobile menu */}
+      <NavbarMenu className="font-semibold">
+        {NAV_ITEMS.map((item, index) => (
+          <NavbarMenuItem
+            onClick={() => {
+              setIsMenuOpen(false)
+            }}
+            key={`m-${index}`}
+          >
+            <Link href={item.url}>{labels[item.key]}</Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   )
 }

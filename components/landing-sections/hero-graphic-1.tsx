@@ -3,12 +3,20 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
+import { staggerContainer } from '@/lib/utils/variants'
+
 import ExpImage01 from '../../public/exp_img_01.webp'
 
 export function HeroGraphicOne() {
   return (
-    <motion.section className="inner-width relative my-28 flex w-full flex-col-reverse items-center py-20 text-center md:grid md:grid-cols-2 md:text-left">
-      <motion.div className="my-auto space-y-5 pr-[8%] mt-4">
+    <motion.section
+      variants={staggerContainer(0, 0.5)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      className="inner-width relative my-28 flex w-full flex-col-reverse items-center py-20 text-center md:grid md:grid-cols-2 md:text-left"
+    >
+      <motion.div className="my-auto mt-4 space-y-5 pr-[8%]">
         <motion.p className="flex-1 text-4xl font-extrabold">
           Practice Real-Life English in Real-Life Situations
         </motion.p>

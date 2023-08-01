@@ -9,7 +9,7 @@ import { getMessages } from '@/lib/i18n/server'
 
 import { Footer } from './footer'
 import { Header } from './header'
-import { ThemeProvider } from './theme-provider'
+import { Provider } from './provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -40,12 +40,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages.Index}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <Provider>
             <div
               className={`${inter.className} flex min-h-screen w-full flex-col items-center bg-white dark:bg-black`}
             >
@@ -53,7 +48,7 @@ export default async function RootLayout({
               <main className="w-full flex-1">{children}</main>
               <Footer />
             </div>
-          </ThemeProvider>
+          </Provider>
         </NextIntlClientProvider>
         <Analytics />
       </body>

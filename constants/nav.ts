@@ -1,4 +1,8 @@
-export const MAIN_NAV_ITEMS = [
+export const NAV_ITEMS = [
+  {
+    key:'home',
+    url: '/',
+  },
   {
     key: 'blog',
     url: '/blog',

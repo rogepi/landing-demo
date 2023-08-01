@@ -68,9 +68,9 @@ export function Footer() {
     <footer className="w-full font-semibold">
       <div className="inner-width mx-auto mb-10 md:grid md:grid-cols-2 lg:grid-cols-3">
         {/* Left */}
-        <div className="space-y-5 pb-5">
+        <div className="flex items-center justify-between gap-3 pb-5 md:block">
           <LocaleSwitch />
-          <div className="my-3 flex items-center gap-3">
+          <div className="flex h-full items-center gap-3">
             {ICON_LINK_LIST.map((item, index) => (
               <Link href={item.link} key={index} target="_blank">
                 <Image
