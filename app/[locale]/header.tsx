@@ -17,6 +17,7 @@ import * as React from 'react'
 
 import { ThemeToggle } from '@/components/widgets/theme-toggle'
 import { NAV_ITEMS } from '@/constants/nav'
+import { useMounted } from '@/hooks'
 
 import Download from '../../public/download.svg'
 import Logo from '../../public/loora-logo.svg'
@@ -41,6 +42,9 @@ export function Header({
       setIsTop(true)
     }
   })
+
+  const mounted = useMounted()
+  if (!mounted) return null
   return (
     <Navbar
       className={className}
